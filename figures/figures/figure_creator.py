@@ -1,30 +1,30 @@
 import random
 
-from figures.figures.figure_patterns import FigureStructure
+from figures.figures.figure_patterns import FigurePatterns
 
-class CircleCreator(FigureStructure, object):
+class CircleCreator(FigurePatterns, object):
 
     LINE_WIDTH = 5
 
-    def __init__(self, name, perimeter=0):
+    def __init__(self, name, perimeter=7):
         super(CircleCreator, self).__init__(name)
         self.perimeter = perimeter
-    
+
     def get_properties(self):
-        return {'name': self.name, 'perimeter': self._compute_perimeter()}
+        return {'name': self.name, 'area': self._compute_area(), 'perimeter': self.get_perimeter()}
     
-    def _compute_perimeter(self):
+    def _compute_area(self):
         return random.random()*10
 
     def set_perimeter(self, value):
         self.perimeter = value
 
-class SquareCreator(FigureStructure):
+    def get_perimeter(self):
+        return self.perimeter
+
+class SquareCreator(FigurePatterns):
 
     LINE_WIDTH = 2
 
     def __init__(self, name):
         super(SquareCreator, self).__init__(name)
-
-
-	

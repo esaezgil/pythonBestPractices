@@ -1,22 +1,14 @@
-from collections import namedtuple
 
 
-LINE_WIDTH = 3
-
-class FigureStructure(object):
+class FigurePatterns(object):
          
-    TRANSPARENCY = 0    
+    TRANSPARENCY = 15
 
-    def __init__(self, name, transparency=TRANSPARENCY):
+    def __init__(self, name):
         self.name = name
     
     def get_name(self):
         return self.name
     
-    def get_line_width(self):
-        return LINE_WIDTH
-
-
-
-    
-    
+    def get_transparency(self):
+        return self.TRANSPARENCY
