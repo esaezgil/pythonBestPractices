@@ -10,6 +10,10 @@ class TestFigureCreator(TestCase):
         self.circle = CircleCreator('Circle')
         self.square = SquareCreator('Square')
 
+    def tearDown(self):
+        self.circle = None
+        self.square = None
+
     def test_figure_creator(self):
         assert self.circle.LINE_WIDTH == 5
         assert self.circle.TRANSPARENCY == 15
@@ -17,25 +21,25 @@ class TestFigureCreator(TestCase):
         assert self.square.TRANSPARENCY == 15
 
     @patch.object(CircleCreator, '_compute_area')
-    def test_default_perimeter_ok(self, compute_perimeter_patch):
-        compute_perimeter_patch.return_value = 0
+    def test_default_area_ok(self, compute_area_patch):
+        compute_area_patch.return_value = 0
         self.assertEqual(self.circle.get_properties()['area'], 0)
 
     @patch('random.random')
-    def test_compute_perimeter(self, random_patch):
+    def test_compute_area(self, random_patch):
         random_patch.return_value = 0
         self.assertEqual(self.circle.get_properties()['area'], 0)
 
     @patch('random.random')
     def test_circle_creator(self, random_patch):
         random_patch.return_value = 0
-        circle = CircleCreator('circle', perimeter=5)
+        circle = CircleCreator('circle', area=5)
         assert circle.get_name() == 'circle'
         assert circle.get_properties().get('area') == 0
 
-    def test_set_perimeter(self):
-        self.circle.set_perimeter(5)
-        assert self.circle.get_properties().get('perimeter') == 5
+    def test_set_area(self):
+        self.circle.set_area(5)
+        assert self.circle.get_area() == 5
 
     def test_mocked_circle(self):
         circle = Mock()

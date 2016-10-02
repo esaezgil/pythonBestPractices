@@ -5,12 +5,12 @@ setup(
     version="1",
     description="figures module to create your own figures",
     author="enrique",
-    packages=find_packages(),
+    packages=find_packages('figures'),
     author_email="dummy@dummy.net",
     url="wwww.dummy.net/dummy/",
     entry_points={
         'console_scripts': [
-            "figure_creator = figures.example_figures:main"
+            "figure_creator = figures.example_figures:main",
         ],
     },
 )

@@ -16,3 +16,6 @@ def main():
     print name_circle
     print circle_properties
     print name_square
+
+if __name__ == "__main__":
+    main()

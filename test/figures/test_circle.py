@@ -15,19 +15,19 @@ class TestFigures(TestCase):
     def test_name_ok(self):
         self.assertEqual(self.circle.get_name(), 'Circle')
 
-    @patch.object(CircleCreator, '_compute_perimeter')
-    def test_default_perimeter_ok(self, compute_perimeter_patch):
-        compute_perimeter_patch.return_value = 0
-        self.assertEqual(self.circle.get_properties()['perimeter'], 0)
+    @patch.object(CircleCreator, '_compute_area')
+    def test_default_area_ok(self, compute_area_patch):
+        compute_area_patch.return_value = 0
+        self.assertEqual(self.circle.get_properties()['area'], 0)
 
     @patch('random.random')
-    def test_compute_perimeter(self, r_patch):
+    def test_compute_area(self, r_patch):
         r_patch.return_value = 0
-        self.assertEqual(self.circle.get_properties()['perimeter'], 0)
+        self.assertEqual(self.circle.get_properties()['area'], 0)
 
-    def test_change_perimeter_ok(self):
-        self.circle.set_perimeter(4)
-        assert self.circle.perimeter == 4
+    def test_change_area_ok(self):
+        self.circle.set_area(4)
+        assert self.circle.area == 4
 
     def test_mocked_circle(self):
         circle = MagicMock()
