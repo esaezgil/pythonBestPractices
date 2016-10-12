@@ -1,0 +1,926 @@
+<!--
+Google IO 2012/2013 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+--><!DOCTYPE html>
+
+
+<html>
+<head>
+  <title>Python projects&#39; Best Practices &mdash; Python Project&#39;s Best Practices</title>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <meta name="hieroglyph-title" data-config-title>
+  <meta name="hieroglyph-subtitle" data-config-subtitle>
+  <meta name="hieroglyph-presenter" data-config-presenter>
+
+  
+  <link rel="stylesheet" media="all"
+        href="_static/theme/css/default.css">
+  <link rel="stylesheet" media="all"
+        href="_static/theme/css/hieroglyph.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)"
+        href="_static/theme/css/phone.css">
+
+    
+
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2016.10.12',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+
+    <script data-main="_static/js/slides"
+            src="_static/js/require-1.0.8.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="Python Project&#39;s Best Practices" href="#" /> 
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  
+
+  
+    <slide class="title-slide segue nobackground level-1" id="python-projects-best-practices">
+    <hgroup>
+      <h1>Python projects' Best Practices</h1>
+    </hgroup>
+    <article class="">
+      <img alt="_images/download.jpeg" class="align-center" src="_images/download.jpeg" />
+
+
+
+
+    </article>
+  </slide>  <slide class="level-1" id="who-am-i">
+    <hgroup>
+      <h1>Who am I</h1>
+    </hgroup>
+    <article class="">
+      <blockquote>
+<div><p>Enrique Saez</p>
+<p>Software engineer working for Skyscanner Hotels: <a class="reference external" href="http://skyscanner.net/hotels">http://skyscanner.net/hotels</a></p>
+</div></blockquote>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="motivation">
+    <hgroup>
+      <h2>Motivation</h2>
+    </hgroup>
+    <article class="">
+      <ul class="simple">
+<li>Started in a mature Python project</li>
+<li>CI &amp; CD already set up</li>
+</ul>
+<a class="reference internal image-reference" href="_images/Picture1.png"><img alt="_images/Picture1.png" src="_images/Picture1.png" style="width: 964.5px; height: 443.0px;" /></a>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="goal">
+    <hgroup>
+      <h2>Goal</h2>
+    </hgroup>
+    <article class="">
+      <ul class="simple">
+<li>Help advanced beginners understand project structure</li>
+<li>Make clear to intermediate devs</li>
+</ul>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="best-practices-for-a-python-project">
+    <hgroup>
+      <h2>Best Practices for a Python project</h2>
+    </hgroup>
+    <article class="">
+      <ul class="simple">
+<li>Project structure</li>
+<li>Modules</li>
+<li>Packages</li>
+<li>PEP8</li>
+<li>Environment setup (virtualenv)</li>
+<li>Testing</li>
+<li>Distributing your project</li>
+</ul>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="project-structure">
+    <hgroup>
+      <h2>Project structure</h2>
+    </hgroup>
+    <article class="">
+      <table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="13%" />
+<col width="23%" />
+<col width="17%" />
+<col width="24%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">project folder</th>
+<th class="head">Flask</th>
+<th class="head">Requests</th>
+<th class="head">boto3</th>
+<th class="head">pandas</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>docs/</td>
+<td>docs/</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>examples</td>
+<td>examples/</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>sample/core.py</td>
+<td>flask/</td>
+<td>requests/</td>
+<td>boto3/</td>
+<td>pandas/</td>
+</tr>
+<tr class="row-odd"><td>scripts/</td>
+<td>scripts/</td>
+<td>&nbsp;</td>
+<td>scripts/</td>
+<td>scripts/</td>
+</tr>
+<tr class="row-even"><td>tests/</td>
+<td>tests/</td>
+<td>tests/</td>
+<td>tests/</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Makefile</td>
+<td>Makefile</td>
+<td>Makefile</td>
+<td>Makefile</td>
+<td>Makefile</td>
+</tr>
+<tr class="row-even"><td>setup.py</td>
+<td>setup.py</td>
+<td>setup.py</td>
+<td>setup.py</td>
+<td>setup.py</td>
+</tr>
+<tr class="row-odd"><td>requirements.txt</td>
+<td>setup.cfg</td>
+<td>requirements.txt</td>
+<td>setup.cfg</td>
+<td>requirements.txt</td>
+</tr>
+<tr class="row-even"><td>tox.ini</td>
+<td>tox.ini</td>
+<td>&nbsp;</td>
+<td>tox.ini</td>
+<td>tox.ini</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="modules">
+    <hgroup>
+      <h2>Modules</h2>
+    </hgroup>
+    <article class="">
+      <ul class="simple">
+<li>split code in different files for related data and functionality</li>
+<li>lowercase, _separated names for module and function names: ~~compute-area~~ compute_area</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_square</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">square</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>square(0,10) will get run on import!</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_square</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">square</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">square</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="what-does-python-do-to-import-a-module">
+    <hgroup>
+      <h2>What does python do to import a module?</h2>
+    </hgroup>
+    <article class="">
+      <ul>
+<li><p class="first">Check the module registry (sys.modules)</p>
+</li>
+<li><p class="first">If the module is already imported:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Python uses the existing module object as is</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Otherwise:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Create a new, empty module object (essentially a dictionary)</li>
+<li>Insert that module object in the&nbsp;sys.modules&nbsp;dictionary</li>
+<li>Load the module code object (if necessary, compile the module first)</li>
+<li>Execute the module code object in the new module’s namespace (isolated scope)</li>
+<li>Top-level statements in modu.py will be executed, including other imports</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first">It’s fairly cheap to import an already imported module: look the module name up in a dictionary.</p>
+</li>
+</ul>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="importing-a-module-ii">
+    <hgroup>
+      <h2>Importing a module (II)</h2>
+    </hgroup>
+    <article class="">
+      <ul>
+<li><p class="first">Function and class definitions are stored in the module’s dictionary</p>
+</li>
+<li><p class="first">Functions, and classes will be available to the caller through the module’s namespace</p>
+</li>
+<li><p class="first">The included code is isolated in a module namespace:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Generally don’t have to worry about the included code having unwanted effects (overriding functions with the same name)</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="packages">
+    <hgroup>
+      <h2>Packages</h2>
+    </hgroup>
+    <article class="">
+      <ul>
+<li><dl class="first docutils">
+<dt>Directory with python modules:</dt>
+<dd><ul class="first last simple">
+<li>installed into <code class="docutils literal"><span class="pre">/dist-packages/</span></code>      <code class="docutils literal"><span class="pre">(python</span> <span class="pre">setup.py</span> <span class="pre">install)</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">pack</span><span class="o">/</span>
+<span class="n">pack</span><span class="o">/</span><span class="n">__init__</span><span class="o">.</span><span class="n">py</span>
+<span class="n">pack</span><span class="o">/</span><span class="n">modu</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Don't have to worry about configuring PYTHONPATH to include the source</p>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="packages-ii">
+    <hgroup>
+      <h2>Packages (II)</h2>
+    </hgroup>
+    <article class="">
+      <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">pack</span><span class="o">/</span>
+<span class="n">pack</span><span class="o">/</span><span class="n">__init__</span><span class="o">.</span><span class="n">py</span>
+<span class="n">pack</span><span class="o">/</span><span class="n">modu</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pack</span> <span class="kn">import</span> <span class="n">modu</span>     <span class="kn">import</span> <span class="nn">very.deep.module</span> <span class="kn">as</span> <span class="nn">mod</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Execute all top-level statements from __init__.py</li>
+<li>Execute all top-level statements from modu.py</li>
+<li>Any variable, function, class defined in modu.py is available in pack.modu</li>
+</ul>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="pep8">
+    <hgroup>
+      <h2>PEP8</h2>
+    </hgroup>
+    <article class="">
+      <ul>
+<li><p class="first">Four spaces (NOT a tab) for each indentation level</p>
+</li>
+<li><p class="first">Limit all lines to 80/120 characters</p>
+</li>
+<li><dl class="first docutils">
+<dt>Separate:</dt>
+<dd><ul class="first last simple">
+<li>top level functions and class definitions with 2 blank lines</li>
+<li>methods inside a class by a single blank line</li>
+<li>sparingly: blank lines in functions to separate logical sections</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">figures.figures.figure_patterns</span> <span class="kn">import</span> <span class="n">FigurePatterns</span>
+
+
+<span class="k">class</span> <span class="nc">CircleCreator</span><span class="p">(</span><span class="n">FigurePatterns</span><span class="p">,</span> <span class="nb">object</span><span class="p">):</span>
+
+    <span class="n">LINE_WIDTH</span> <span class="o">=</span> <span class="mi">5</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">area</span><span class="o">=</span><span class="mi">7</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CircleCreator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">area</span> <span class="o">=</span> <span class="n">area</span>
+</pre></div>
+</div>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="pep8-ii">
+    <hgroup>
+      <h2>PEP8 (II)</h2>
+    </hgroup>
+    <article class="">
+      <ul class="simple">
+<li>Lowercase, _-separated names for module and function names: my_module</li>
+<li>CamelCase to name classes</li>
+<li>‘_’ prefix to indicate a “private” variable/method not to be used outside the module</li>
+<li>blank spaces, CONSTANTS</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">figures.figures.figure_patterns</span> <span class="kn">import</span> <span class="n">FigurePatterns</span>
+
+
+<span class="k">class</span> <span class="nc">CircleCreator</span><span class="p">(</span><span class="n">FigurePatterns</span><span class="p">,</span> <span class="nb">object</span><span class="p">):</span>
+
+    <span class="n">LINE_WIDTH</span> <span class="o">=</span> <span class="mi">5</span>
+
+    <span class="k">def</span> <span class="nf">_compute_area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="mi">10</span>
+</pre></div>
+</div>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="pep8-iii">
+    <hgroup>
+      <h2>PEP8 (III)</h2>
+    </hgroup>
+    <article class="">
+      <ul>
+<li><dl class="first docutils">
+<dt>imports:</dt>
+<dd><ul class="first last simple">
+<li>standard</li>
+<li>third-party</li>
+<li>local library</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span>
+<span class="kn">from</span> <span class="nn">figures</span> <span class="kn">import</span> <span class="n">figure_patterns</span>
+</pre></div>
+</div>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="testing-environment-setup-virtualenv">
+    <hgroup>
+      <h2>Testing: environment setup (virtualenv)</h2>
+    </hgroup>
+    <article class="">
+      <ul class="simple">
+<li>Allow Python packages to be installed in an isolated location for a particular application, rather than globally.</li>
+<li>Keep dependencies separated</li>
+<li>Isolated environments with different python versions</li>
+</ul>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="virtualenv">
+    <hgroup>
+      <h2>virtualenv</h2>
+    </hgroup>
+    <article class="">
+      <div class="highlight-bash"><div class="highlight"><pre><span></span>$ virtualenv venv
+$ virtualenv -p /usr/bin/python2.7 venv
+$ <span class="nb">source</span> venv/bin/activate
+$ deactivate
+$ pip freeze &gt; requirements.txt <span class="o">(</span>list packages and version in venv<span class="o">)</span>
+$ pip install -r requirements.txt
+</pre></div>
+</div>
+<ul>
+<li><dl class="first docutils">
+<dt>Creates:</dt>
+<dd><ul class="first last simple">
+<li>a folder containing the necessary executables to use the packages needed by the Python project</li>
+<li>a copy of pip to install other packages</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="testing-unittest-package">
+    <hgroup>
+      <h2>testing: (unittest package)</h2>
+    </hgroup>
+    <article class="">
+      <ul class="simple">
+<li>Mirror hierarchy:</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">mylib</span><span class="o">/</span><span class="n">foo</span><span class="o">/</span><span class="n">bar</span><span class="o">.</span><span class="n">py</span>
+<span class="n">mylib</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="n">foo</span><span class="o">/</span><span class="n">test_bar</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">unittest</span> <span class="kn">import</span> <span class="n">TestCase</span>
+
+
+<span class="k">class</span> <span class="nc">TestFigures</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">circle</span> <span class="o">=</span> <span class="n">CircleCreator</span><span class="p">(</span><span class="s1">&#39;Circle&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">circle</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">test_name_ok</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">circle</span><span class="o">.</span><span class="n">get_name</span><span class="p">(),</span> <span class="s1">&#39;Circle&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>assert method provided by unittest</li>
+</ul>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="testing-fixtures">
+    <hgroup>
+      <h2>testing: Fixtures</h2>
+    </hgroup>
+    <article class="">
+      <p>Resources/initial conditions that a test needs to operate correctly and independently from other tests.</p>
+<p>Functions and methods that run before and after a test</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">unittest</span> <span class="kn">import</span> <span class="n">TestCase</span>
+
+
+<span class="k">class</span> <span class="nc">TestFigures</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">circle</span> <span class="o">=</span> <span class="n">CircleCreator</span><span class="p">(</span><span class="s1">&#39;Circle&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">circle</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">test_name_ok</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">circle</span><span class="o">.</span><span class="n">get_name</span><span class="p">(),</span> <span class="s1">&#39;Circle&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="testing-nose-package">
+    <hgroup>
+      <h2>testing: (nose package)</h2>
+    </hgroup>
+    <article class="">
+      <ul class="simple">
+<li>Provides automatic test discovery</li>
+<li>Loads every file that starts with test_</li>
+<li>Executes all functions within that start with test_</li>
+<li>In maintenance mode for the past several years: use Nose2, py.test</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ nosetest
+</pre></div>
+</div>
+<p>test selection:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ path.to.your.module:ClassOfYourTest.test_method
+$ path.to.your.module:ClassOfYourTest
+$ path.to.your.module
+</pre></div>
+</div>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="py-test">
+    <hgroup>
+      <h2>py.test</h2>
+    </hgroup>
+    <article class="">
+      <ul class="simple">
+<li>Auto-discovery of test modules and functions</li>
+<li>Modular fixtures for managing small or parametrized long-lived test resources</li>
+<li>Can run unittest (including trial) and nose test suites</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ py.test tests/
+</pre></div>
+</div>
+<ul class="simple">
+<li>Parametrize</li>
+</ul>
+<p><a class="reference external" href="http://docs.pytest.org/en/latest/fixture.html#fixture">http://docs.pytest.org/en/latest/fixture.html#fixture</a></p>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-3" id="tox">
+    <hgroup>
+      <h3>tox</h3>
+    </hgroup>
+    <article class="">
+      <ul class="simple">
+<li>Clean environment for running unit tests:</li>
+<li>Create virtual environment, using pip to install dependencies</li>
+<li>Use setup.py to install package inside virtualenv</li>
+<li>Automate and standardize how tests are run in Python for each environment</li>
+</ul>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">tox</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">envlist = {py27}</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[testenv]</span>
+<span class="l l-Scalar l-Scalar-Plain">deps =</span>
+    <span class="l l-Scalar l-Scalar-Plain">-rrequirements.txt</span>
+
+<span class="l l-Scalar l-Scalar-Plain">commands =</span>
+    <span class="l l-Scalar l-Scalar-Plain">nosetests</span>
+</pre></div>
+</div>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="jargon">
+    <hgroup>
+      <h2>Jargon</h2>
+    </hgroup>
+    <article class="">
+      <ul>
+<li><dl class="first docutils">
+<dt>Built Distribution</dt>
+<dd><ul class="first last simple">
+<li>A Distribution format containing files and metadata</li>
+<li>Only need to be moved to the correct location to be installed</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Wheel</dt>
+<dd><ul class="first last simple">
+<li>A Built Distribution format supported by pip.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>setuptools</dt>
+<dd><ul class="first last simple">
+<li>Collection of enhancements to the Python distutils, (includes easy_install)</li>
+<li>Easily build and distribute Python distributions, especially ones that have dependencies on other packages.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="jargon-ii">
+    <hgroup>
+      <h2>Jargon (II)</h2>
+    </hgroup>
+    <article class="">
+      <ul>
+<li><dl class="first docutils">
+<dt>Source Distribution (or “sdist”)</dt>
+<dd><ul class="first last simple">
+<li>requires a build step when installed by pip</li>
+<li>provides metadata and the essential source files needed for installing by a tool like pip, or for generating a Built Distribution.</li>
+<li>usually generated with <code class="code docutils literal"><span class="pre">setup.py</span> <span class="pre">sdist</span></code></li>
+<li>see the bdist_wheel setuptools extension available from the wheel project to create wheels</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>egg</dt>
+<dd><ul class="first last simple">
+<li>a zip file with different extension</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>setup.cfg</dt>
+<dd><ul class="first last simple">
+<li>ini file that contains option defaults for&nbsp;setup.py&nbsp;commands.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="console-scripts">
+    <hgroup>
+      <h2>Console scripts</h2>
+    </hgroup>
+    <article class="">
+      <ul class="simple">
+<li>Installs a tiny program in the system path to call a module’s specific function</li>
+<li>Launchable programs need to be installed inside a directory in the systempath</li>
+</ul>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="setup-py">
+    <hgroup>
+      <h2>setup.py</h2>
+    </hgroup>
+    <article class="">
+      <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
+
+<span class="n">setup</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;figures&quot;</span><span class="p">,</span>
+    <span class="n">version</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(),</span>
+    <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;figure_creator = figures.example_figures:main&quot;</span>
+        <span class="p">],</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="setup-py-ii">
+    <hgroup>
+      <h2>setup.py (II)</h2>
+    </hgroup>
+    <article class="">
+      <div class="highlight-bash"><div class="highlight"><pre><span></span>python setup.py install
+</pre></div>
+</div>
+<p>will create a script like this in /bin/:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">__requires__</span> <span class="o">=</span> <span class="s1">&#39;figures==1&#39;</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">pkg_resources</span> <span class="kn">import</span> <span class="n">load_entry_point</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span>
+        <span class="n">load_entry_point</span><span class="p">(</span><span class="s1">&#39;figures==1&#39;</span><span class="p">,</span> <span class="s1">&#39;console_scripts&#39;</span><span class="p">,</span> <span class="s1">&#39;figure_creator&#39;</span><span class="p">)()</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>scans the entry points of the figures package</li>
+<li>retrieves the figures key from the console_scripts category, to locate and run the corresponding function</li>
+<li>entry points: package.subpackage:function</li>
+</ul>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="entry-points">
+    <hgroup>
+      <h2>entry points</h2>
+    </hgroup>
+    <article class="">
+      <ul class="simple">
+<li>Part of setuptools</li>
+<li>Used by other python programs to dynamically discover features that a package provides</li>
+<li>entry_point_inspector package: lists the entry points available in a package</li>
+</ul>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="requirements-for-installing-packages">
+    <hgroup>
+      <h2>Requirements for Installing Packages</h2>
+    </hgroup>
+    <article class="">
+      <ul class="simple">
+<li>pip, setuptools (for advanced installations) and wheel</li>
+<li>distutils for simple package installations</li>
+<li>Create a virtual environment</li>
+<li>pip</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install –r requirements.txt
+$ pip install ‘botocore<span class="o">=</span>0.6.8’
+</pre></div>
+</div>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="wheel">
+    <hgroup>
+      <h2>Wheel</h2>
+    </hgroup>
+    <article class="">
+      <ul class="simple">
+<li>pre-built distribution format</li>
+<li>faster installation compared to Source Distributions (sdist), especially when a project contains compiled extensions.</li>
+<li>creates a .whl file in the dist directory</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>python your_code.whl/wheel
+</pre></div>
+</div>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="wheel-ii">
+    <hgroup>
+      <h2>Wheel (II)</h2>
+    </hgroup>
+    <article class="">
+      <ul class="simple">
+<li>supported by pip</li>
+</ul>
+<ul class="simple">
+<li>offers the bdist_wheel setuptools extension for creating wheel distributions.</li>
+<li>Additionally, it offers its own command line utility for creating and installing wheels.</li>
+<li>Wheel files do not require installation</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>run $ python wheel-0.21.0-py2.py3-none-any.whl/wheel –h
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>python setup.py bdist_wheel
+</pre></div>
+</div>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="mocking">
+    <hgroup>
+      <h2>Mocking</h2>
+    </hgroup>
+    <article class="">
+      <ul class="simple">
+<li>Replace parts of the project with mock objects (fake, behaviour controlled)</li>
+<li>Make assertions about how they have been used</li>
+</ul>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="mock">
+    <hgroup>
+      <h2>Mock</h2>
+    </hgroup>
+    <article class="">
+      <p>Mock objects
+Simulated objets that mimic the behaviour of real objects</p>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="references">
+    <hgroup>
+      <h2>References</h2>
+    </hgroup>
+    <article class="">
+      <p>The Hitchhiker’s Guide to Python: <a class="reference external" href="http://docs.python-guide.org/en/latest/">http://docs.python-guide.org/en/latest/</a></p>
+<p>Python Packaging User Guide: <a class="reference external" href="https://packaging.python.org/">https://packaging.python.org/</a></p>
+<p>Writing idiomatic Python: <a class="reference external" href="https://jeffknupp.com/">https://jeffknupp.com/</a></p>
+<p>Mouse vs Python: <a class="reference external" href="http://www.blog.pythonlibrary.org/">http://www.blog.pythonlibrary.org/</a></p>
+<p>Python for you and me: <a class="reference external" href="http://pymbook.readthedocs.io/en/latest/">http://pymbook.readthedocs.io/en/latest/</a></p>
+<p>BogoToBogo: <a class="reference external" href="http://www.bogotobogo.com/python">http://www.bogotobogo.com/python</a></p>
+<p>Python testing: <a class="reference external" href="http://www.pythontesting.net/">http://www.pythontesting.net/</a></p>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="questions">
+    <hgroup>
+      <h2>Questions:</h2>
+    </hgroup>
+    <article class="">
+      <p><a class="reference external" href="http://github.com/esaezgil/pythonbestpractices">http://github.com/esaezgil/pythonbestpractices</a></p>
+
+
+
+
+    </article>
+  </slide>
+
+
+    <slide class="thank-you-slide segue nobackground">
+    <article class="flexbox vleft auto-fadein">
+      <h2>&lt;Thank You!&gt;</h2>
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
