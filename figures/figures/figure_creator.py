@@ -2,6 +2,7 @@ import random
 
 from figures.figures.figure_patterns import FigurePatterns
 
+
 class CircleCreator(FigurePatterns, object):
 
     LINE_WIDTH = 5
@@ -12,7 +13,7 @@ class CircleCreator(FigurePatterns, object):
 
     def get_properties(self):
         return {'name': self.name, 'area': self._compute_area()}
-    
+
     def _compute_area(self):
         return random.random()*10
 
@@ -21,6 +22,7 @@ class CircleCreator(FigurePatterns, object):
 
     def get_area(self):
         return self.area
+
 
 class SquareCreator(FigurePatterns):
 

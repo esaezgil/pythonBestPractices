@@ -10,8 +10,8 @@ def main():
 
     name_circle = json.dumps(circle.get_name())
     name_square = json.dumps(square.get_name())
-    
-    circle_properties = circle.get_properties()   
+
+    circle_properties = circle.get_properties()
 
     print name_circle
     print circle_properties
