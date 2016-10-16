@@ -55,7 +55,7 @@ Project structure
 +-----------------+----------+-----------------+-------------+------------------+
 | scripts/        | scripts/ |                 | scripts/    | scripts/         |
 +-----------------+----------+-----------------+-------------+------------------+
-| tests/          | tests/   | tests/          | tests/      |                  |
+| tests/          | tests/   | tests/          | tests/      | /pandas/tests/   |
 +-----------------+----------+-----------------+-------------+------------------+
 | Makefile        | Makefile | Makefile        | Makefile    |   Makefile       |
 +-----------------+----------+-----------------+-------------+------------------+
@@ -84,7 +84,6 @@ Modules
 
   def create_square(start, stop):
       print i**2
-      square(0, 10)
       if __name__ == '__main__':
           square(0, 10)
 
@@ -104,7 +103,7 @@ What does python do to import a module?
     4. Execute the module code object in the new module’s namespace (isolated scope)
     5. Top-level statements in modu.py will be executed, including other imports
 
-* It’s fairly cheap to import an already imported module: look the module name up in a dictionary.
+* It’s fairly cheap to import an already imported module: look the module name up in a dictionary. O(1)
 
 Importing a module (II)
 =======================
@@ -469,10 +468,17 @@ Mock
 Mock objects
 Simulated objets that mimic the behaviour of real objects
 
+Questions:
+==========
+
+http://github.com/esaezgil/pythonbestpractices
+
 References
 ==========
 
 The Hitchhiker’s Guide to Python: http://docs.python-guide.org/en/latest/
+
+The Hacker's Guide to Python: https://thehackerguidetopython.com
 
 Python Packaging User Guide: https://packaging.python.org/
 
@@ -485,13 +491,3 @@ Python for you and me: http://pymbook.readthedocs.io/en/latest/
 BogoToBogo: http://www.bogotobogo.com/python
 
 Python testing: http://www.pythontesting.net/
-
-
-Questions:
-==========
-
-
-
-http://github.com/esaezgil/pythonbestpractices
-
-

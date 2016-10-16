@@ -55,7 +55,7 @@ Project structure
 +-----------------+----------+-----------------+-------------+------------------+
 | scripts/        | scripts/ |                 | scripts/    | scripts/         |
 +-----------------+----------+-----------------+-------------+------------------+
-| tests/          | tests/   | tests/          | tests/      |                  |
+| tests/          | tests/   | tests/          | tests/      | /pandas/tests/   |
 +-----------------+----------+-----------------+-------------+------------------+
 | Makefile        | Makefile | Makefile        | Makefile    |   Makefile       |
 +-----------------+----------+-----------------+-------------+------------------+
@@ -473,6 +473,8 @@ References
 ==========
 
 The Hitchhiker’s Guide to Python: http://docs.python-guide.org/en/latest/
+
+The Hacker's Guide to Python: https://thehackerguidetopython.com
 
 Python Packaging User Guide: https://packaging.python.org/
 

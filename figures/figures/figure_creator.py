@@ -1,6 +1,6 @@
 import random
 
-from figures.figures.figure_patterns import FigurePatterns
+from figures.figure_patterns import FigurePatterns
 
 
 class CircleCreator(FigurePatterns, object):

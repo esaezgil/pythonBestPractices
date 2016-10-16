@@ -1,7 +1,7 @@
 from unittest import TestCase
 from mock import Mock, MagicMock, patch
 
-from figures.figures.figure_creator import CircleCreator
+from figures.figure_creator import CircleCreator
 
 
 class TestFigures(TestCase):

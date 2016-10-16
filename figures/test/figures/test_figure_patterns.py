@@ -1,7 +1,7 @@
 from unittest import TestCase
 from mock import Mock, MagicMock, patch
 
-from figures.figures.figure_patterns import FigurePatterns
+from figures.figure_patterns import FigurePatterns
 
 
 class TestFigurePatterns(TestCase):
