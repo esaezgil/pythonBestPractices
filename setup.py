@@ -5,7 +5,7 @@ setup(
     version="1",
     description="figures module to create your own figures",
     author="enrique",
-    packages=['figures'],
+    packages=find_packages(),
     author_email="dummy@dummy.net",
     url="wwww.dummy.net/dummy/",
     package_dir = {'': 'figures'},
