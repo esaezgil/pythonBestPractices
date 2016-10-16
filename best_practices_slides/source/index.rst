@@ -376,10 +376,15 @@ setup.py
     setup(
         name="figures",
         version="1",
+        description="figures module to create your own figures",
+        author="enrique",
         packages=find_packages(),
+        author_email="dummy@dummy.net",
+        url="wwww.dummy.net/dummy/",
+        package_dir = {'': 'figures'},
         entry_points={
             'console_scripts': [
-                "figure_creator = figures.example_figures:main"
+                "figures = figures.example_figures:main",
             ],
         },
     )
@@ -431,7 +436,7 @@ Wheel
 =====
 * pre-built distribution format
 * faster installation compared to Source Distributions (sdist), especially when a project contains compiled extensions.
-
+* zip file with a different extension
 * creates a .whl file in the dist directory
 
 .. sourcecode:: bash
