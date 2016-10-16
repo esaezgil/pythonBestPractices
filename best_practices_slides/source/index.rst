@@ -70,7 +70,7 @@ Modules
 =======
 
 - split code in different files for related data and functionality
-- lowercase, _separated names for module and function names: ~~compute-area~~ compute_area
+- lowercase, _separated names for module and function names: create_square
 
 .. sourcecode:: python
 
@@ -314,9 +314,10 @@ http://docs.pytest.org/en/latest/fixture.html#fixture
 tox
 ---
 
-* Clean environment for running unit tests:
+* Clean environment for running unit tests
 * Create virtual environment, using pip to install dependencies
 * Use setup.py to install package inside virtualenv
+* Run tests
 * Automate and standardize how tests are run in Python for each environment
 
 .. sourcecode:: yaml
@@ -329,7 +330,7 @@ tox
         -rrequirements.txt
 
     commands =
-        nosetests
+        nosetests figures/test/
 
 Jargon
 ======
@@ -360,12 +361,6 @@ Jargon (II)
 * setup.cfg
     * ini file that contains option defaults for setup.py commands.
 
-Console scripts
-===============
-
-* Installs a tiny program in the system path to call a module’s specific function
-* Launchable programs need to be installed inside a directory in the systempath
-
 setup.py
 ========
 
@@ -391,6 +386,19 @@ setup.py
 
 setup.py (II)
 =============
+
+* Console scripts
+    - Installs a tiny program in the system path to call a module’s specific function
+    - Launchable programs need to be installed inside a directory in the systempath
+
+* entry points
+    - Part of setuptools
+    - Used by other python programs to dynamically discover features that a package provides
+    - entry_point_inspector package: lists the entry points available in a package
+
+
+setup.py (III)
+==============
 .. sourcecode:: bash
 
     python setup.py install
@@ -412,13 +420,6 @@ will create a script like this in /bin/:
 * retrieves the figures key from the console_scripts category, to locate and run the corresponding function
 * entry points: package.subpackage:function
 
-entry points
-============
-
-- Part of setuptools
-- Used by other python programs to dynamically discover features that a package provides
-- entry_point_inspector package: lists the entry points available in a package
-
 Requirements for Installing Packages
 ====================================
 
@@ -437,6 +438,7 @@ Wheel
 * pre-built distribution format
 * faster installation compared to Source Distributions (sdist), especially when a project contains compiled extensions.
 * zip file with a different extension
+* Better caching for testing and continuous integration.
 * creates a .whl file in the dist directory
 
 .. sourcecode:: bash
@@ -473,10 +475,14 @@ Mock
 Mock objects
 Simulated objets that mimic the behaviour of real objects
 
-Questions:
-==========
-
 http://github.com/esaezgil/pythonbestpractices
+==============================================
+
+.. image:: /_static/f7dabu.jpg
+    :align: center
+    :scale: 190 %
+
+Questions?
 
 References
 ==========
@@ -496,3 +502,5 @@ Python for you and me: http://pymbook.readthedocs.io/en/latest/
 BogoToBogo: http://www.bogotobogo.com/python
 
 Python testing: http://www.pythontesting.net/
+
+https://blog.ionelmc.ro/presentations/packaging
