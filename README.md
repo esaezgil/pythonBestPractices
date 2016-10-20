@@ -1,10 +1,31 @@
 Python Projects' Best Practices
 ===============================
 
-Small repo and slides for the talk delivered at Python Barcelona meetup in October'16
+Small repo and slides for the talk delivered at Python Barcelona Meetup in October'16
 
 The **figures** package is a simple project that aims to highlight some of the best practices for Python projects.
-It also contains the required configuration to make a wheel, use tox, py.test, nosetests and install the package using setup.py
+
+It contains the required configuration to:
+
+- Make a wheel
+
+    ```python setup.py bdist_wheel```
+
+- Use tox
+
+    ```tox ```
+
+- Run nose
+
+    ```nosetests tests/```
+
+- Run pytest
+
+    ``` py.test tests/```
+
+- Install the package using setup.py
+
+    ```python setup.py install```
 
 The **best_practices_slides** folder contains the source code required to generate the slides of the presentation.
 Simply:
