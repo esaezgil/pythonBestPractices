@@ -1,4 +1,4 @@
-
+from datetime import datetime
 
 class FigurePatterns(object):
 

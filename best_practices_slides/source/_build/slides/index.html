@@ -220,6 +220,17 @@ URL: https://code.google.com/p/io-2012-slides
 
 
     </article>
+  </slide>  <slide class="level-2" id="example-project-structure-figures">
+    <hgroup>
+      <h2>Example project structure: Figures</h2>
+    </hgroup>
+    <article class="">
+      <a class="reference internal image-reference" href="_images/fig_proj.png"><img alt="_images/fig_proj.png" class="align-center" src="_images/fig_proj.png" style="width: 813.0px; height: 888.0px;" /></a>
+
+
+
+
+    </article>
   </slide>  <slide class="level-2" id="modules">
     <hgroup>
       <h2>Modules</h2>
@@ -227,7 +238,7 @@ URL: https://code.google.com/p/io-2012-slides
     <article class="">
       <ul class="simple">
 <li>split code in different files for related data and functionality</li>
-<li>lowercase, _separated names for module and function names: ~~compute-area~~ compute_area</li>
+<li>lowercase, _separated names for module and function names: create_square</li>
 </ul>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_square</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">):</span>
     <span class="k">print</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span>
@@ -239,7 +250,6 @@ URL: https://code.google.com/p/io-2012-slides
 </ul>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_square</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">):</span>
     <span class="k">print</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span>
-    <span class="n">square</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
         <span class="n">square</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 </pre></div>
@@ -255,7 +265,7 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article class="">
       <ul>
-<li><p class="first">Check the module registry (sys.modules)</p>
+<li><p class="first"><strong>Check the module registry</strong> (sys.modules)</p>
 </li>
 <li><p class="first">If the module is already imported:</p>
 <blockquote>
@@ -275,7 +285,7 @@ URL: https://code.google.com/p/io-2012-slides
 </ol>
 </div></blockquote>
 </li>
-<li><p class="first">It’s fairly cheap to import an already imported module: look the module name up in a dictionary.</p>
+<li><p class="first">It’s fairly cheap to import an already imported module: look the module name up in a dictionary. O(1)</p>
 </li>
 </ul>
 
@@ -606,9 +616,10 @@ $ path.to.your.module
     </hgroup>
     <article class="">
       <ul class="simple">
-<li>Clean environment for running unit tests:</li>
+<li>Clean environment for running unit tests</li>
 <li>Create virtual environment, using pip to install dependencies</li>
 <li>Use setup.py to install package inside virtualenv</li>
+<li>Run tests</li>
 <li>Automate and standardize how tests are run in Python for each environment</li>
 </ul>
 <div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">tox</span><span class="p p-Indicator">]</span>
@@ -619,7 +630,7 @@ $ path.to.your.module
     <span class="l l-Scalar l-Scalar-Plain">-rrequirements.txt</span>
 
 <span class="l l-Scalar l-Scalar-Plain">commands =</span>
-    <span class="l l-Scalar l-Scalar-Plain">nosetests</span>
+    <span class="l l-Scalar l-Scalar-Plain">nosetests figures/test/</span>
 </pre></div>
 </div>
 
@@ -704,20 +715,6 @@ $ path.to.your.module
 
 
     </article>
-  </slide>  <slide class="level-2" id="console-scripts">
-    <hgroup>
-      <h2>Console scripts</h2>
-    </hgroup>
-    <article class="">
-      <ul class="simple">
-<li>Installs a tiny program in the system path to call a module’s specific function</li>
-<li>Launchable programs need to be installed inside a directory in the systempath</li>
-</ul>
-
-
-
-
-    </article>
   </slide>  <slide class="level-2" id="setup-py">
     <hgroup>
       <h2>setup.py</h2>
@@ -728,10 +725,15 @@ $ path.to.your.module
 <span class="n">setup</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;figures&quot;</span><span class="p">,</span>
     <span class="n">version</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;figures module to create your own figures&quot;</span><span class="p">,</span>
+    <span class="n">author</span><span class="o">=</span><span class="s2">&quot;enrique&quot;</span><span class="p">,</span>
     <span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(),</span>
+    <span class="n">author_email</span><span class="o">=</span><span class="s2">&quot;dummy@dummy.net&quot;</span><span class="p">,</span>
+    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;wwww.dummy.net/dummy/&quot;</span><span class="p">,</span>
+    <span class="n">package_dir</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;&#39;</span><span class="p">:</span> <span class="s1">&#39;figures&#39;</span><span class="p">},</span>
     <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
         <span class="s1">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="s2">&quot;figure_creator = figures.example_figures:main&quot;</span>
+            <span class="s2">&quot;figures = figures.example_figures:main&quot;</span><span class="p">,</span>
         <span class="p">],</span>
     <span class="p">},</span>
 <span class="p">)</span>
@@ -745,6 +747,37 @@ $ path.to.your.module
   </slide>  <slide class="level-2" id="setup-py-ii">
     <hgroup>
       <h2>setup.py (II)</h2>
+    </hgroup>
+    <article class="">
+      <ul>
+<li><dl class="first docutils">
+<dt>Console scripts</dt>
+<dd><ul class="first last simple">
+<li>Installs a tiny program in the system path to call a module’s specific function</li>
+<li>Launchable programs need to be installed inside a directory in the systempath</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>entry points</dt>
+<dd><ul class="first last simple">
+<li>Part of setuptools</li>
+<li>Used by other python programs to dynamically discover features that a package provides</li>
+<li>entry_point_inspector package: lists the entry points available in a package</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+
+
+
+
+    </article>
+  </slide>  <slide class="level-2" id="setup-py-iii">
+    <hgroup>
+      <h2>setup.py (III)</h2>
     </hgroup>
     <article class="">
       <div class="highlight-bash"><div class="highlight"><pre><span></span>python setup.py install
@@ -765,21 +798,6 @@ $ path.to.your.module
 <li>scans the entry points of the figures package</li>
 <li>retrieves the figures key from the console_scripts category, to locate and run the corresponding function</li>
 <li>entry points: package.subpackage:function</li>
-</ul>
-
-
-
-
-    </article>
-  </slide>  <slide class="level-2" id="entry-points">
-    <hgroup>
-      <h2>entry points</h2>
-    </hgroup>
-    <article class="">
-      <ul class="simple">
-<li>Part of setuptools</li>
-<li>Used by other python programs to dynamically discover features that a package provides</li>
-<li>entry_point_inspector package: lists the entry points available in a package</li>
 </ul>
 
 
@@ -814,6 +832,8 @@ $ pip install ‘botocore<span class="o">=</span>0.6.8’
       <ul class="simple">
 <li>pre-built distribution format</li>
 <li>faster installation compared to Source Distributions (sdist), especially when a project contains compiled extensions.</li>
+<li>zip file with a different extension</li>
+<li>Better caching for testing and continuous integration.</li>
 <li>creates a .whl file in the dist directory</li>
 </ul>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>python your_code.whl/wheel
@@ -874,6 +894,18 @@ Simulated objets that mimic the behaviour of real objects</p>
 
 
     </article>
+  </slide>  <slide class="level-2" id="http-github-com-esaezgil-pythonbestpractices">
+    <hgroup>
+      <h2><a class="reference external" href="http://github.com/esaezgil/pythonbestpractices">http://github.com/esaezgil/pythonbestpractices</a></h2>
+    </hgroup>
+    <article class="">
+      <a class="reference internal image-reference" href="_images/f7dabu.jpg"><img alt="_images/f7dabu.jpg" class="align-center" src="_images/f7dabu.jpg" style="width: 492.1px; height: 368.6px;" /></a>
+<p>Questions?</p>
+
+
+
+
+    </article>
   </slide>  <slide class="level-2" id="references">
     <hgroup>
       <h2>References</h2>
@@ -887,17 +919,7 @@ Simulated objets that mimic the behaviour of real objects</p>
 <p>Python for you and me: <a class="reference external" href="http://pymbook.readthedocs.io/en/latest/">http://pymbook.readthedocs.io/en/latest/</a></p>
 <p>BogoToBogo: <a class="reference external" href="http://www.bogotobogo.com/python">http://www.bogotobogo.com/python</a></p>
 <p>Python testing: <a class="reference external" href="http://www.pythontesting.net/">http://www.pythontesting.net/</a></p>
-
-
-
-
-    </article>
-  </slide>  <slide class="level-2" id="questions">
-    <hgroup>
-      <h2>Questions:</h2>
-    </hgroup>
-    <article class="">
-      <p><a class="reference external" href="http://github.com/esaezgil/pythonbestpractices">http://github.com/esaezgil/pythonbestpractices</a></p>
+<p><a class="reference external" href="https://blog.ionelmc.ro/presentations/packaging">https://blog.ionelmc.ro/presentations/packaging</a></p>
 
 
 

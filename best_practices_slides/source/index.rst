@@ -28,7 +28,6 @@ Goal
 ====
 
 * Help advanced beginners understand project structure
-* Make clear to intermediate devs
 
 
 Best Practices for a Python project
@@ -66,6 +65,13 @@ Project structure
 | tox.ini         | tox.ini  |                 |  tox.ini    |   tox.ini        |
 +-----------------+----------+-----------------+-------------+------------------+
 
+Example project structure: Figures
+==================================
+
+.. image:: /_static/fig_proj.png
+    :align: center
+    :scale: 65
+
 Modules
 =======
 
@@ -76,7 +82,7 @@ Modules
 
   def create_square(start, stop):
       print i**2
-      square(0, 10)
+  square(0, 10)
 
 - square(0,10) will get run on import!
 
@@ -84,46 +90,49 @@ Modules
 
   def create_square(start, stop):
       print i**2
-      if __name__ == '__main__':
-          square(0, 10)
+  if __name__ == '__main__':
+      square(0, 10)
 
 What does python do to import a module?
 ========================================
 
-* Check the module registry (sys.modules)
-* If the module is already imported:
+* ``Check the module registry`` (sys.modules)
+* If the module is **already** imported:
 
-    * Python uses the existing module object as is
+    * Python ``uses the existing module`` object as is
 
 * Otherwise:
 
-    1. Create a new, empty module object (essentially a dictionary)
-    2. Insert that module object in the sys.modules dictionary
-    3. Load the module code object (if necessary, compile the module first)
-    4. Execute the module code object in the new module’s namespace (isolated scope)
+    1. Create a ``new, empty module object`` (essentially a dictionary)
+    2. ``Insert`` that module object in sys.modules dictionary
+    3. ``Load the module code`` object (if necessary, compile the module first)
+    4. ``Execute`` the module code object in the new module’s namespace (isolated scope)
     5. Top-level statements in modu.py will be executed, including other imports
 
 * It’s fairly cheap to import an already imported module: look the module name up in a dictionary. O(1)
 
 Importing a module (II)
 =======================
-* Function and class definitions are stored in the module’s dictionary
-* Functions, and classes will be available to the caller through the module’s namespace
-* The included code is isolated in a module namespace:
+- Function and class definitions are stored in the module’s dictionary
+    - Available to the caller through the module’s namespace
+    - The included code is isolated in a module namespace:
 
-    - Generally don’t have to worry about the included code having unwanted effects (overriding functions with the same name)
+        - Generally don’t have to worry about the included code having unwanted effects (overriding functions with the same name)
 
 Packages
 ========
-
-* Directory with python modules:
-    - installed into ``/dist-packages/``      ``(python setup.py install)``
 
 .. sourcecode:: python
 
     pack/
     pack/__init__.py
     pack/modu.py
+
+.. sourcecode:: python
+
+    python setup.py install
+
+Installed into ``/dist-packages/``
 
 Don't have to worry about configuring PYTHONPATH to include the source
 
@@ -133,28 +142,30 @@ Packages (II)
 
 .. sourcecode:: python
 
-    pack/
-    pack/__init__.py
-    pack/modu.py
+    sound/__init__.py
+    sound/effects/__init__.py
+    sound/effects/echo.py
+    sound/effects/surround.py
 
 .. sourcecode:: python
 
-    from pack import modu     import very.deep.module as mod
+    from sound.effects import surround    import sound.effects.surround as surround
 
-* Execute all top-level statements from __init__.py
-* Execute all top-level statements from modu.py
-* Any variable, function, class defined in modu.py is available in pack.modu
+* Execute all top-level statements from ``__init__.py``
+* Execute all top-level statements from surround.py
+* Any ``public`` variable, function, class defined in surround.py is available in sound.effects.surround
 
-PEP8
-====
+
+PEP8 (Style Guide for Python code)
+==================================
+
+Improve the readability of code and make it consistent
 
 * Four spaces (NOT a tab) for each indentation level
 * Limit all lines to 80/120 characters
 * Separate:
     * top level functions and class definitions with 2 blank lines
     * methods inside a class by a single blank line
-    * sparingly: blank lines in functions to separate logical sections
-
 .. sourcecode:: python
 
     from figures.figures.figure_patterns import FigurePatterns
@@ -162,17 +173,15 @@ PEP8
 
     class CircleCreator(FigurePatterns, object):
 
-        LINE_WIDTH = 5
-
         def __init__(self, name, area=7):
             super(CircleCreator, self).__init__(name)
             self.area = area
 
 PEP8 (II)
 =========
-* Lowercase, _-separated names for module and function names: my_module
+* Lowercase, _-separated names for module and function names: ``my_module``
 * CamelCase to name classes
-* ‘_’ prefix to indicate a “private” variable/method not to be used outside the module
+* ‘_’ prefix: “private” variable/method not to be used outside the module
 * blank spaces, CONSTANTS
 
 .. sourcecode:: python
@@ -204,9 +213,10 @@ PEP8 (III)
 Testing: environment setup (virtualenv)
 =======================================
 
-- Allow Python packages to be installed in an isolated location for a particular application, rather than globally.
-- Keep dependencies separated
-- Isolated environments with different python versions
+- Tool to create isolated Python environments
+    - Python packages installed in an isolated location rather than globally.
+    - Keep dependencies separated
+    - Isolated environments with different python versions
 
 virtualenv
 ==========
@@ -300,16 +310,12 @@ py.test
 =======
 
 * Auto-discovery of test modules and functions
-* Modular fixtures for managing small or parametrized long-lived test resources
-* Can run unittest (including trial) and nose test suites
+* Modular fixtures for managing small or parametrized test resources
+* Can run unittest and nose test suites
 
 .. sourcecode:: bash
 
     $ py.test tests/
-
-* Parametrize
-
-http://docs.pytest.org/en/latest/fixture.html#fixture
 
 tox
 ---
@@ -339,8 +345,11 @@ Jargon
     * A Distribution format containing files and metadata
     * Only need to be moved to the correct location to be installed
 
-* Wheel
-    - A Built Distribution format supported by pip.
+* Source Distribution (or “sdist”)
+    * requires a build step when installed by pip
+    * provides metadata and the essential source files needed for pip, or generating a Built Distribution.
+    * usually generated with :code:`setup.py sdist`
+    * see the bdist_wheel setuptools extension available from the wheel project to create wheels
 
 * setuptools
     - Collection of enhancements to the Python distutils, (includes easy_install)
@@ -349,11 +358,10 @@ Jargon
 Jargon (II)
 ===========
 
-* Source Distribution (or “sdist”)
-    * requires a build step when installed by pip
-    * provides metadata and the essential source files needed for installing by a tool like pip, or for generating a Built Distribution.
-    * usually generated with :code:`setup.py sdist`
-    * see the bdist_wheel setuptools extension available from the wheel project to create wheels
+* pip
+    - The PyPA recommended tool for installing Python packages
+* Wheel
+    - A Built Distribution format supported by pip
 
 * egg
     * a zip file with different extension
@@ -372,10 +380,7 @@ setup.py
         name="figures",
         version="1",
         description="figures module to create your own figures",
-        author="enrique",
-        packages=find_packages(),
-        author_email="dummy@dummy.net",
-        url="wwww.dummy.net/dummy/",
+        packages=packages=['figures'],
         package_dir = {'': 'figures'},
         entry_points={
             'console_scripts': [
@@ -383,6 +388,8 @@ setup.py
             ],
         },
     )
+
+* entry points: package.subpackage:function
 
 setup.py (II)
 =============
@@ -417,8 +424,7 @@ will create a script like this in /bin/:
         )
 
 * scans the entry points of the figures package
-* retrieves the figures key from the console_scripts category, to locate and run the corresponding function
-* entry points: package.subpackage:function
+* retrieves the figures key from the console_scripts category
 
 Requirements for Installing Packages
 ====================================
@@ -436,44 +442,25 @@ Requirements for Installing Packages
 Wheel
 =====
 * pre-built distribution format
-* faster installation compared to Source Distributions (sdist), especially when a project contains compiled extensions.
+* faster installation compared to Source Distributions (sdist)
+    especially if project contains compiled extensions
 * zip file with a different extension
-* Better caching for testing and continuous integration.
-* creates a .whl file in the dist directory
-
-.. sourcecode:: bash
-
-    python your_code.whl/wheel
+* Better caching for testing and continuous integration
+- Wheel files do not require installation
 
 Wheel (II)
 ==========
 
 * supported by pip
 
-- offers the bdist_wheel setuptools extension for creating wheel distributions.
-- Additionally, it offers its own command line utility for creating and installing wheels.
-
-- Wheel files do not require installation
-
-.. sourcecode:: bash
-
-	run $ python wheel-0.21.0-py2.py3-none-any.whl/wheel –h
+- Offers the bdist_wheel setuptools extension for creating wheel distributions
+- Command line utility for creating and installing wheels
 
 .. sourcecode:: bash
 
     python setup.py bdist_wheel
 
-Mocking
-=======
-
-* Replace parts of the project with mock objects (fake, behaviour controlled)
-* Make assertions about how they have been used
-
-Mock
-====
-
-Mock objects
-Simulated objets that mimic the behaviour of real objects
+* creates a .whl file in the /dist/ directory
 
 http://github.com/esaezgil/pythonbestpractices
 ==============================================
