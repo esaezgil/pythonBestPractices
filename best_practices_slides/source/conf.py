@@ -379,3 +379,8 @@ slide_theme_options = {
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'https://docs.python.org/': None}
+
+extensions += ['rst2pdf.pdfbuilder']
+
+pdf_documents = [('index', u'sample', u'Sample rst2pdf doc', u'Your Name'),]
+
