@@ -3,6 +3,8 @@ Python Projects' Best Practices
 
 Small repo and slides for the talk delivered at Python Barcelona Meetup in October'16
 
+**Slides:** Clone the repo and open: `best_practices_slides/build/slides/index.html`
+
 The **figures** package is a simple project that aims to highlight some of the best practices for Python projects.
 
 It contains the required configuration to:
