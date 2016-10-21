@@ -31,6 +31,10 @@ The **best_practices_slides** folder contains the source code required to genera
 Simply:
 
 Install the requirements:
+
+```
+cd best_practices_slides/
+```
   
 ```
 pip install -r requirements-slides.txt
