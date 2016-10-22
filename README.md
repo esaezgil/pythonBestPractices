@@ -46,4 +46,4 @@ Generate the slides:
 make slides
 ```
 
-Slides are generated from an .rst file using [hieroglyph:] (https://github.com/nyergler/hieroglyph)
+Slides are generated from an .rst file using [hieroglyph] (https://github.com/nyergler/hieroglyph)
