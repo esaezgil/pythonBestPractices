@@ -3,7 +3,7 @@ Python Projects' Best Practices
 
 Small repo and slides for the talk delivered at Python Barcelona Meetup in October'16
 
-**Slides:** Clone the repo and open: `best_practices_slides/build/slides/index.html`
+**Slides:** https://github.com/esaezgil/pythonBestPractices/blob/master/Python%20Projects%20Best%20Practices.pdf
 
 The **figures** package is a simple project that aims to highlight some of the best practices for Python projects.
 
