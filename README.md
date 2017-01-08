@@ -13,6 +13,10 @@ It contains the required configuration to:
 
     ```python setup.py bdist_wheel```
 
+- Install the wheel
+    
+    ``` pip install --use-wheel dist/figures-1-py2-none-any.whl```
+
 - Use tox
 
     ```tox ```
